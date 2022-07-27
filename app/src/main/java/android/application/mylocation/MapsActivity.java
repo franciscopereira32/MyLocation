@@ -53,8 +53,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     boolean isOpen = false;
 
-
-
     @Override
 
     //private val rotateOpen: Animation by Lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open)}
@@ -137,6 +135,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(adelaide).title("Adelaide - SA").snippet("Australia"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(adelaide));
 
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -182,4 +181,3 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 }
-//Teste git atualização

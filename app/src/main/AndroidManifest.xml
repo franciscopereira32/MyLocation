@@ -15,6 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyLocation"
+        android:screenOrientation="sensor"
         tools:targetApi="31">
 
         <!--
@@ -35,6 +36,8 @@
         <activity
             android:name=".MapsActivity"
             android:exported="true"
+            android:keepScreenOn="true"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
