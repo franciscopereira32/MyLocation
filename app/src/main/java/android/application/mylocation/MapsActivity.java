@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -47,6 +48,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private final long MIN_TIME = 1000;
     private final long MIN_DIST = 5;
     private LatLng latLng;
+    public int pause = 0;
+    public int pr = 1;
 
     FloatingActionButton fab, fab1, fab2;
     Animation fabOpen, fabClose, rotateForward, rotateBackward;
@@ -91,9 +94,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animteFab();
                 Toast.makeText(MapsActivity.this, "pause", Toast.LENGTH_SHORT).show();
+                //animteFab();
+                pause = pause + 1;
+                    if (pause == 3){
+                        pause = 1;
+                    }
             }
+
         });
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,24 +155,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         int speed = (int) ((location.getSpeed()*3600)/1000);
                         textView.setText(speed+" KM/H");
+                        if (pause != 1) {
+                            try {
+                                CircleOptions circleOptions = new CircleOptions()
+                                        .center(new LatLng(location.getLatitude(), location.getLongitude()))
+                                        .radius(10)
+                                        .strokeColor(Color.RED);
+                                Circle circle = mMap.addCircle(circleOptions);
 
-                        try {
-                            CircleOptions circleOptions = new CircleOptions()
-                                    .center(new LatLng(location.getLatitude(), location.getLongitude()))
-                                    .radius(10)
-                                    .strokeColor(Color.RED);
-                            Circle circle = mMap.addCircle(circleOptions);
+                                latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                                /**mMap.addMarker(new MarkerOptions().position(latLng)
+                                 .title("Minha Localização")
+                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_baseline_fiber_manual_record_24)));
+                                 */
+                                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                            }
+                            catch (SecurityException e){
+                                e.printStackTrace();
+                            }
+                        }else{
+                            Marker marker = mMap.addMarker(new MarkerOptions().position(latLng)
+                                    .title("Parada"));
 
-                            latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                            /**mMap.addMarker(new MarkerOptions().position(latLng)
-                             .title("Minha Localização")
-                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_baseline_fiber_manual_record_24)));
-                             */
-                            mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                         }
-                        catch (SecurityException e){
-                            e.printStackTrace();
-                        }
+
                     }
                 };
 
