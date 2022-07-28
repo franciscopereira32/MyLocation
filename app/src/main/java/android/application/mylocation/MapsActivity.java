@@ -85,28 +85,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         rotateForward = AnimationUtils.loadAnimation(this, R.anim.rotate_open);
         rotateBackward = AnimationUtils.loadAnimation(this, R.anim.rotate_close);
 
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 animteFab();
+                Toast.makeText(MapsActivity.this, "play", Toast.LENGTH_SHORT).show();
             }
         });
+        //Bottom pause function
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MapsActivity.this, "pause", Toast.LENGTH_SHORT).show();
-                //animteFab();
                 pause = pause + 1;
-                    if (pause == 3){
+                if (pause == 3){
                         pause = 1;
                     }
+                else if (pause == 1){
+                    animteFab();
+                }
             }
 
         });
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animteFab();
+                animteFab(); //close floating bottom
                 Toast.makeText(MapsActivity.this, "stop", Toast.LENGTH_SHORT).show();
             }
         });
@@ -128,6 +133,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             fab1.setClickable(true);
             fab2.setClickable(true);
             isOpen=true;
+            pause = 0;
         }
     }
 

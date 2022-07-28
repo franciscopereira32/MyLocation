@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2995" />
         <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/drawable/ic_baseline_directions_bike_24.xml" value="0.174" />
         <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/drawable/ic_baseline_fiber_manual_record_24.xml" value="0.174" />
         <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/drawable/ic_baseline_near_me_24.xml" value="0.1425" />
         <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1425" />
+        <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/drawable/navegando.xml" value="0.2995" />
+        <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/drawable/pause.xml" value="0.2995" />
+        <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/drawable/play.xml" value="0.2995" />
         <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/drawable/start.xml" value="0.1425" />
         <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/layout/activity_maps.xml" value="0.4333855799373041" />
       </map>
