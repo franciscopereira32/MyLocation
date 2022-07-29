@@ -112,7 +112,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 animteFab(); //close floating bottom
+
+                pause = 4;
+                if (pause == 4){
+                    float zoomLevel = 12.0f; //This goes up to 21
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
+
+                }
                 Toast.makeText(MapsActivity.this, "stop", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -161,7 +169,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         int speed = (int) ((location.getSpeed()*3600)/1000);
                         textView.setText(speed+" KM/H");
-                        if (pause != 1) {
+                        if (pause == 0) {
                             try {
                                 CircleOptions circleOptions = new CircleOptions()
                                         .center(new LatLng(location.getLatitude(), location.getLongitude()))
@@ -175,6 +183,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                  .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_baseline_fiber_manual_record_24)));
                                  */
                                 mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+
+                                float zoomLevel = 16.0f; //This goes up to 21
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
                             }
                             catch (SecurityException e){
                                 e.printStackTrace();
