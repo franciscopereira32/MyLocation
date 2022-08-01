@@ -56,6 +56,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     boolean isOpen = false;
 
+    private static final int REQUEST_EXTERNAL_STORAGe = 1;
+    private static String[] permissionstorage = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
     @Override
 
     //private val rotateOpen: Animation by Lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open)}
@@ -89,6 +91,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Marker marker = mMap.addMarker(new MarkerOptions().position(latLng)
+                        .title("start")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 animteFab();
                 Toast.makeText(MapsActivity.this, "play", Toast.LENGTH_SHORT).show();
             }
@@ -101,8 +107,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 pause = pause + 1;
                 if (pause == 3){
                         pause = 1;
-                    }
-                else if (pause == 1){
+                }else if (pause == 1){
                     animteFab();
                 }
             }
@@ -119,7 +124,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
 
                 }
-                Toast.makeText(MapsActivity.this, "stop", Toast.LENGTH_SHORT).show();
+
+               Toast.makeText(MapsActivity.this, "stop", Toast.LENGTH_SHORT).show();
+
 
             }
         });
@@ -173,7 +180,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             try {
                                 CircleOptions circleOptions = new CircleOptions()
                                         .center(new LatLng(location.getLatitude(), location.getLongitude()))
-                                        .radius(10)
+                                        .radius(5)
                                         .strokeColor(Color.RED);
                                 Circle circle = mMap.addCircle(circleOptions);
 
@@ -191,9 +198,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 e.printStackTrace();
                             }
                         }else{
-                            Marker marker = mMap.addMarker(new MarkerOptions().position(latLng)
-                                    .title("Parada"));
-
+                            Marker maker = mMap.addMarker(new MarkerOptions().position(latLng)
+                                    .title("Parada")
+                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));//with the .icon can you ability change color
                         }
 
                     }
