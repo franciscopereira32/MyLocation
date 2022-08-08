@@ -26,6 +26,8 @@ import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import android.application.mylocation.databinding.ActivityMapsBinding;
 import android.view.View;
@@ -37,6 +39,7 @@ import android.widget.Toast;
 
 
 import java.text.BreakIterator;
+import java.util.Date;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -50,6 +53,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LatLng latLng;
     public int pause = 0;
     public int pr = 1;
+
+    private DatabaseReference mDatabase;
 
     FloatingActionButton fab, fab1, fab2;
     Animation fabOpen, fabClose, rotateForward, rotateBackward;
@@ -86,6 +91,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fabClose = AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim);
         rotateForward = AnimationUtils.loadAnimation(this, R.anim.rotate_open);
         rotateBackward = AnimationUtils.loadAnimation(this, R.anim.rotate_close);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +110,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 Toast.makeText(MapsActivity.this, "pause", Toast.LENGTH_SHORT).show();
+                mDatabase.child("location").child(String.valueOf(new Date().getTime())).setValue(latLng); //saving location in DB of firebase
                 pause = pause + 1;
                 if (pause == 3){
                         pause = 1;
@@ -165,6 +172,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(adelaide));
 
 
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,6 +193,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 Circle circle = mMap.addCircle(circleOptions);
 
                                 latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                               // mDatabase.child("location").child(String.valueOf(new Date().getTime())).setValue(latLng);
+
                                 /**mMap.addMarker(new MarkerOptions().position(latLng)
                                  .title("Minha Localização")
                                  .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_baseline_fiber_manual_record_24)));
@@ -193,6 +203,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                                 float zoomLevel = 16.0f; //This goes up to 21
                                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
+
+
                             }
                             catch (SecurityException e){
                                 e.printStackTrace();
