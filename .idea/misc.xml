@@ -12,7 +12,11 @@
         <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/drawable/pause.xml" value="0.2995" />
         <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/drawable/play.xml" value="0.2995" />
         <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/drawable/start.xml" value="0.1425" />
+        <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/layout/activity_cadastro.xml" value="0.6590330788804071" />
+        <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/layout/activity_login.xml" value="0.67" />
         <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/layout/activity_maps.xml" value="0.5262390670553936" />
+        <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/layout/activity_validacao.xml" value="0.5" />
+        <entry key="..\:/Users/Francisco/MyLocation/app/src/main/res/layout/login.xml" value="0.67" />
       </map>
     </option>
   </component>
