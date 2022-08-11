@@ -97,12 +97,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Toast.makeText(MapsActivity.this, "play", Toast.LENGTH_SHORT).show();
                 Marker marker = mMap.addMarker(new MarkerOptions().position(latLng)
                         .title("start")
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-                animteFab();
-                Toast.makeText(MapsActivity.this, "play", Toast.LENGTH_SHORT).show();
+                        animteFab();
             }
         });
         //Bottom pause function
@@ -128,13 +127,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 pause = 4;
                 if (pause == 4){
                     float zoomLevel = 12.0f; //This goes up to 21
+                    Toast.makeText(MapsActivity.this, "stop", Toast.LENGTH_SHORT).show();
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoomLevel));
-
                 }
-
-               Toast.makeText(MapsActivity.this, "stop", Toast.LENGTH_SHORT).show();
-
-
             }
         });
 

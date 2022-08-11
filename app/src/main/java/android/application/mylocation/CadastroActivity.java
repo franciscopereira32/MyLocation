@@ -21,7 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.security.Principal;
-//import com.example.sistema.modelo.Usuario;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -33,17 +32,14 @@ public class CadastroActivity extends AppCompatActivity {
     private CheckBox swAdm;
     private Usuario u;
 
-    //@SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
         txEmail = findViewById(R.id.txEmail);
-      //  txNome = findViewById(R.id.txNome);
         txSenha = findViewById(R.id.txSenha);
         btCadastro = findViewById(R.id.btCadastro);
-      //  swAdm = findViewById(R.id.swAdmin);
         mAuth = FirebaseAuth.getInstance();
 
         btCadastro.setOnClickListener(new View.OnClickListener() {
@@ -65,15 +61,10 @@ public class CadastroActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             u.setId(user.getUid());
                             u.salvarDados();
-                           /**if(u.getAdm()){
-                                Toast.makeText(CadastroActivity.this,"Tela do administrador",Toast.LENGTH_SHORT).show();
-                                //startActivity(new Intent(CadastroActivity.this,AdmActivity.class));
-                            }else{*/
-                                startActivity(new Intent(CadastroActivity.this,MapsActivity.class));
-                            //}
-                    }else {
+                            startActivity(new Intent(CadastroActivity.this,MapsActivity.class));
+                        }else {
                             Toast.makeText(CadastroActivity.this,"Erro ao criar usuario",Toast.LENGTH_SHORT).show();
-                        }
+                            }
                     }
                 });
 
@@ -83,14 +74,8 @@ public class CadastroActivity extends AppCompatActivity {
             Toast.makeText(this,"Você deve preencher todos os dados",Toast.LENGTH_LONG);
         }else {
             u = new Usuario();
-            //u.setNome(txNome.getText().toString());
             u.setEmail(txEmail.getText().toString());
             u.setSenha(txSenha.getText().toString());
-           /** if (swAdm.isChecked()){
-                u.setAdm(true);
-            }else {
-                u.setAdm(false);
-            }*/
         }
 }
 }
